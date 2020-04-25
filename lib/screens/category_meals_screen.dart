@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipes/models/meal.dart';
 
 import '../widgets/meal_item.dart';
+import '../screens/meal_detail_screen.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
@@ -41,6 +42,16 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     });
   }
 
+    void selectMeal(BuildContext context, String id) {
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.routeName, arguments: id)
+        .then((result) {
+          setState(() {
+            
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -58,7 +69,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
               affordability: displayedMeals[index].affordability,
               complexity: displayedMeals[index].complexity,
               duration: displayedMeals[index].duration,
-              removeItem: _removeMeal,
+              selectMeal: selectMeal,
             );
           },
           itemCount: displayedMeals.length,
